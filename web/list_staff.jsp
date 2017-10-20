@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: dllo
@@ -10,10 +11,11 @@
 <html>
 <head>
     <title>员工列表</title>
+    <script src="jquery-3.2.1.js"></script>
 </head>
 <body>
 
-<form action="" method="post">
+<form action="findStaff.action" method="post">
     部门:
     <select name="department" id="department" onchange="showPost(this)">
         <option value="-1">---请选择---</option>
@@ -27,8 +29,27 @@
         <option value="-1">---请选择---</option>
     </select>
 
-    <input type="submit" value="查询">
+    <input type="button" value="查询" id="bt">
 </form>
+
+<table>
+    <c:if test="${applicationScope.staffs.size > 0}">
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>部门</th>
+            <th>职务</th>
+        </tr>
+        <s:iterator value="#application.staffs" var="staff">
+            <tr>
+                <th>${staff.id}</th>
+                <th>${staff.sname}</th>
+                <th>${staff.department.dname}</th>
+                <th>${staff.post.pname}</th>
+            </tr>
+        </s:iterator>
+    </c:if>
+</table>
 
 <script type="text/javascript">
     function createXMLHttpRequest() {
@@ -58,16 +79,15 @@
                 var jsonData = eval("(" + xmlHttp.responseText + ")");
                 var selectP = document.getElementById("post");
                 selectP.innerHTML = "<option value='-1'>---请选择---</option>";
-                for (var i = 0; i < jsonData.length; i++){
+                for (var i = 0; i < jsonData.length; i++) {
                     var id = jsonData[i].id;
                     var name = jsonData[i].pname;
-                    selectP.innerHTML += "<option value='"+id+"'>"+ name +"</option>"
+                    selectP.innerHTML += "<option value='" + id + "'>" + name + "</option>"
                 }
 
             }
         }
     }
 </script>
-
 </body>
 </html>

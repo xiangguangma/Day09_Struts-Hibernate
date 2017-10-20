@@ -13,5 +13,6 @@
   <body>
   <a href="listStaff.action">跳转到员工界面</a>
   <a href="login.jsp">登录</a>
+  <a href="staff2.jsp">JQ 实现员工页面 </a>
   </body>
 </html>

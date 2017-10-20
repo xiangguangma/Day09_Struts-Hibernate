@@ -6,5 +6,5 @@ import com.lanou.domain.Staff;
 /**
  * Created by dllo on 17/10/20.
  */
-public class StaffDaoImpl extends BaseDaoImpl<Staff> implements StaffDao {
+public class StaffDaoImpl extends BaseDaoImpl<Staff>implements StaffDao {
 }

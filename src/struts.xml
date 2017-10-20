@@ -29,8 +29,15 @@
                 <param name="root">postList</param>
             </result>
         </action>
+
+        <action name="findStaff"
+                class="com.lanou.action.StaffAction"
+                method="findStaff">
+            <result name="success">/list_staff.jsp</result>
+        </action>
     </package>
 
+    <!-- 验证码 和 登录 -->
     <package name="staff_result" extends="struts-default">
         <result-types>
             <result-type name="codeimg" class="com.lanou.util.CodeImgResult"></result-type>
@@ -44,6 +51,25 @@
                 method="login">
             <result name="success">/list_staff.jsp</result>
             <result name="input">/login.jsp</result>
+        </action>
+    </package>
+
+    <!--JQ 写法 配置 -->
+    <package name="jq" extends="json-default">
+        <action name="showDepartment"
+                class="com.lanou.action.StaffAction"
+                method="showDepartment">
+            <result name="success" type="json">
+                <param name="root">departmentList</param>
+            </result>
+        </action>
+
+        <action name="showStaff"
+                class="com.lanou.action.StaffAction"
+                method="showStaff">
+            <result name="success" type="json">
+                <param name="root">staffList</param>
+            </result>
         </action>
 
     </package>

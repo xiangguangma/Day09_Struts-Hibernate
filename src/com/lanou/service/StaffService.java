@@ -25,5 +25,8 @@ public interface StaffService {
     List<Staff> find(String hql, Map<String, Object> params);
 
 
+    List<Staff> find(String did, String pid);
+
+
 
 }
