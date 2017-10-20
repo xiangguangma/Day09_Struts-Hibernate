@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+
+    <!--允许调用静态方法-->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+    <package name="day09" extends="json-default">
+        <!--员工操作-->
+        <action name="listStaff"
+                class="com.lanou.action.StaffAction">
+            <result name="success">/list_staff.jsp</result>
+            <result name="input">/error.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
+
+    <package name="staff_result" extends="struts-default">
+        <result-types>
+            <result-type name="codeimg" class="com.lanou.util.CodeImgResult"></result-type>
+        </result-types>
+        <action name="codeImg">
+            <result type="codeimg" name="success"></result>
+        </action>
+
+        <action name="login"
+                class="com.lanou.action.LoginAction"
+                method="login">
+            <result name="success">/list_staff.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+
+    </package>
+</struts>
