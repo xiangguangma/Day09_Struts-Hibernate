@@ -32,11 +32,11 @@ public class StaffServiceImpl implements StaffService {
         String hql = "from Staff where 1=1 ";
         Map<String, Object> params = new HashMap<>();
 
-        if (null != did && Integer.parseInt(did) > 0) {
+        if (!did.equals("-1")) {
             hql += "and department_id=:did ";
             params.put("did", did);
         }
-        if (null != pid && Integer.parseInt(pid) > 0) {
+        if (!pid.equals("-1")) {
             hql += "and post_id=:pid";
             params.put("pid", pid);
         }
