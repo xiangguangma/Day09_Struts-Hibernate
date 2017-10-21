@@ -67,9 +67,7 @@
         <action name="showStaff"
                 class="com.lanou.action.StaffAction"
                 method="showStaff">
-            <result name="success" type="json">
-                <param name="root">staffList</param>
-            </result>
+            <result name="success">/staff2.jsp</result>
         </action>
 
     </package>

@@ -12,6 +12,13 @@
 <head>
     <title>员工列表</title>
     <script src="jquery-3.2.1.js"></script>
+    <style>
+
+        table,th,tr,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,26 +36,25 @@
         <option value="-1">---请选择---</option>
     </select>
 
-    <input type="button" value="查询" id="bt">
+    <input type="submit" value="查询">
 </form>
 
 <table>
-    <c:if test="${applicationScope.staffs.size > 0}">
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>部门</th>
+        <th>职务</th>
+    </tr>
+    <s:iterator value="#application.staffs" var="staff">
         <tr>
-            <th>id</th>
-            <th>姓名</th>
-            <th>部门</th>
-            <th>职务</th>
+            <th>${staff.id}</th>
+            <th>${staff.sname}</th>
+            <th>${staff.department.dname}</th>
+            <th>${staff.post.pname}</th>
         </tr>
-        <s:iterator value="#application.staffs" var="staff">
-            <tr>
-                <th>${staff.id}</th>
-                <th>${staff.sname}</th>
-                <th>${staff.department.dname}</th>
-                <th>${staff.post.pname}</th>
-            </tr>
-        </s:iterator>
-    </c:if>
+    </s:iterator>
+
 </table>
 
 <script type="text/javascript">

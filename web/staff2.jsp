@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: dllo
@@ -17,23 +18,39 @@
     </style>
 </head>
 <body>
-部门:
-<select name="department" id="department" onchange="showPost(this)">
-    <option value="-1">---请选择---</option>
-    <%--遍历部门集合--%>
-    <s:iterator value="#attr.departments" var="department">
-        <option value="${department.id}">${department.dname}</option>
-    </s:iterator>
-</select>
-职务:
-<select name="post" id="post">
-    <option value="-1">---请选择---</option>
-</select>
+<form action="showStaff.action" method="post">
+    部门:
+    <select name="department" id="department" onchange="showPost(this)">
+        <option value="-1">---请选择---</option>
+        <%--遍历部门集合--%>
+        <s:iterator value="#attr.departments" var="department">
+            <option value="${department.id}">${department.dname}</option>
+        </s:iterator>
+    </select>
+    职务:
+    <select name="post" id="post">
+        <option value="-1">---请选择---</option>
+    </select>
 
-<input type="button" value="查询" id="bt">
+    <input type="submit" value="查询" id="bt">
+
+</form>
 
 <table id="table">
-    <tr><th>id</th><th>姓名</th><th>部门</th><th>职务</th></tr>
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>部门</th>
+        <th>职务</th>
+    </tr>
+    <s:iterator var="staff" value="#attr.staffList">
+        <tr>
+            <th>${staff.id}</th>
+            <th>${staff.sname}</th>
+            <th>${staff.department.dname}</th>
+            <th>${staff.post.pname}</th>
+        </tr>
+    </s:iterator>
 </table>
 
 <script>
@@ -63,21 +80,21 @@
         });
 
 
-        $("#bt").click(function () {
-            $.post("${pageContext.request.contextPath}/showStaff.action",
-                    {department: $("#department").val(), post: $("#post").val()},
-                    function (date) {
-                        var _html = "";
-                        $.each(data, function (index, per) {
-                            _html += "<tr><th>"+per.id+"</th><th>"+per.sname+"</th><th>"+per.department.dname+"</th><th>"+per.post.pname+"</th></tr>";
-                        });
-                        alert(date);
-                        $("#table").html(_html);
-                    },
-                    "json"
+        <%--$("#bt").click(function () {--%>
+            <%--$.post("${pageContext.request.contextPath}/showStaff.action",--%>
+                    <%--{department: $("#department").val(), post: $("#post").val()},--%>
+                    <%--function (date) {--%>
+                        <%--var _html = "";--%>
+                        <%--$.each(data, function (index, per) {--%>
+                            <%--_html += "<tr><th>"+per.id+"</th><th>"+per.sname+"</th><th>"+per.department.dname+"</th><th>"+per.post.pname+"</th></tr>";--%>
+                        <%--});--%>
+                        <%--alert(date);--%>
+                        <%--$("#table").html(_html);--%>
+                    <%--},--%>
+                    <%--"json"--%>
 
-            )
-        })
+            <%--)--%>
+        <%--})--%>
     })
 </script>
 </body>

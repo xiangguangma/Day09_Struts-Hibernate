@@ -92,6 +92,7 @@ public class StaffAction extends ActionSupport {
         for (Staff staff : staffList) {
             System.out.println(staff);
         }
+        ActionContext.getContext().getApplication().put("staffList", staffList);
         return SUCCESS;
     }
 
@@ -104,7 +105,7 @@ public class StaffAction extends ActionSupport {
             System.out.println(staff);
         }
 
-        ActionContext.getContext().getApplication().put("staffList", staffs);
+        ActionContext.getContext().getApplication().put("staffs", staffs);
 
         return SUCCESS;
     }

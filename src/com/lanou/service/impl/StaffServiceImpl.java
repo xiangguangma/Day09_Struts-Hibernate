@@ -29,16 +29,16 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Staff> find(String did, String pid) {
-        String hql = "from Staff where 1=1";
+        String hql = "from Staff where 1=1 ";
         Map<String, Object> params = new HashMap<>();
 
-        if (null != did) {
+        if (null != did && Integer.parseInt(did) > 0) {
             hql += "and department_id=:did ";
-            params.put("did", Integer.parseInt(did));
+            params.put("did", did);
         }
-        if (null != pid) {
+        if (null != pid && Integer.parseInt(pid) > 0) {
             hql += "and post_id=:pid";
-            params.put("pid", Integer.parseInt(pid));
+            params.put("pid", pid);
         }
         return staffDao.find(hql, params);
     }
